@@ -36,6 +36,6 @@ public class Responsavel implements Serializable {
 	private String nomeResponsavel;
 
 	@Setter(value = AccessLevel.NONE)
-	@OneToMany(mappedBy = "responsavelTarefa", targetEntity = Tarefa.class)
+	@OneToMany(mappedBy = "responsavelTarefa", orphanRemoval = true, targetEntity = Tarefa.class)
 	private Set<Tarefa> tarefasResponsavel;
 }
