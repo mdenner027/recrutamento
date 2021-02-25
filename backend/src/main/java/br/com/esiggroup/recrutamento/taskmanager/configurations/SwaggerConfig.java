@@ -20,6 +20,7 @@ public class SwaggerConfig {
 	public Docket configDocket() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(apiInfo())
+				.useDefaultResponseMessages(false)
 				.select()
 				.apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
 				.build();
