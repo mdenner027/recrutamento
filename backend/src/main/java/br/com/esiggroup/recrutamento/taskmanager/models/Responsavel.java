@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +37,7 @@ public class Responsavel implements Serializable {
 	@Column(name = "nome_responsavel", unique = true)
 	private String nomeResponsavel;
 
+	@JsonManagedReference
 	@Setter(value = AccessLevel.NONE)
 	@OneToMany(mappedBy = "responsavelTarefa", orphanRemoval = true, targetEntity = Tarefa.class)
 	private Set<Tarefa> tarefasResponsavel;

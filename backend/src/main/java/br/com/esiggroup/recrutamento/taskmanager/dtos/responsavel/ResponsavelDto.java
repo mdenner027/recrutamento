@@ -18,7 +18,7 @@ public class ResponsavelDto {
 			required = true, 
 			dataType = "Long",
 			position = 1,
-			example = "Ex.: 2")
+			example = "2")
 	private Long idResponsavel;
 	
 	@ApiModelProperty(
@@ -26,6 +26,6 @@ public class ResponsavelDto {
 			required = true, 
 			dataType = "String",
 			position = 2,
-			example = "Ex.: João Macedo Morais")
+			example = "João Macedo Morais")
 	private String nomeResponsavel;
 }

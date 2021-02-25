@@ -23,11 +23,12 @@ public class SwaggerConfig {
 				.useDefaultResponseMessages(false)
 				.select()
 				.apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
-				.build();
+				.build()
+				.directModelSubstitute(Object.class, Void.class);
 	}
 	
 	private ApiInfo apiInfo() {
-		Contact contact = new Contact("Max Denner","", "maxdenner027@hotmail.com");
+		Contact contact = new Contact("Max Denner","https://www.linkedin.com/in/max-denner-t-da-silva-a72bb5165/", "maxdenner027@hotmail.com");
 		return new ApiInfoBuilder()
 				.title("Sistema para gerenciamento de tarefas")
 				.description("API de teste")

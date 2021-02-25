@@ -16,5 +16,5 @@ public interface ResponsavelService {
 
 	void delete(Long idResponsavel);
 	
-	Boolean existResponsavel(Long idResponsavel);
+	void verifyResponsavel(Long idResponsavel);
 }

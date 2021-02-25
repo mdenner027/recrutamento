@@ -35,13 +35,13 @@ public class ResponsavelController {
 			responseContainer = "List",
 			response = ResponsavelDto.class,
 			httpMethod = "GET")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Registros recuperados com sucesso."),
-			@ApiResponse(code = 204, message = "Nenhum registro encontrado."),
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Registros recuperados com sucesso."),
+			@ApiResponse(code = 204, message = "Nenhum registro encontrado.", response = Object.class),
 			@ApiResponse(code = 500, message = "Erro interno do servidor!") })
 	@GetMapping
 	public ResponseEntity<List<ResponsavelDto>> get() {
-		List<ResponsavelDto> responsaveis = responService.findAll();
-		return ResponseEntity.status(responsaveis.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK).body(responsaveis);
+		return ResponseEntity.status(HttpStatus.OK).body(responService.findAll());
 	}
 
 	
@@ -56,10 +56,8 @@ public class ResponsavelController {
 	})
 	@GetMapping(value = "/{idResponsavel}")
 	public ResponseEntity<ResponsavelDto> get(@PathVariable Long idResponsavel) {
-		return ResponseEntity.status(responService.findById(idResponsavel) == null ? 404 : 200)
-				.body(responService.findById(idResponsavel));
+		return ResponseEntity.status(HttpStatus.OK).body(responService.findById(idResponsavel));
 	}
-
 	
 	@ApiOperation(
 			value = "Endpoint para cadastrar um novo responsável.", 
@@ -99,11 +97,7 @@ public class ResponsavelController {
 	})
 	@DeleteMapping("/{idResponsavel}")
 	public ResponseEntity<Void> delete(@PathVariable Long idResponsavel) {
-		if (responService.existResponsavel(idResponsavel)) {
-			responService.delete(idResponsavel);
-			return new ResponseEntity<>(HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+		responService.delete(idResponsavel);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

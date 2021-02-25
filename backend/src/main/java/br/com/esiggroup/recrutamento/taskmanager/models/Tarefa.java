@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.esiggroup.recrutamento.taskmanager.enums.PrioridadeTarefa;
 import br.com.esiggroup.recrutamento.taskmanager.enums.StatusTarefa;
 import lombok.Getter;
@@ -48,10 +50,11 @@ public class Tarefa implements Serializable {
 	@Column(name = "status_tarefa", nullable = false)
 	private StatusTarefa statusTarefa;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "deadline_tarefa", nullable = false)
 	private Calendar deadlineTarefa;
 
+	@JsonBackReference
 	@ManyToOne(targetEntity = Responsavel.class)
 	@JoinColumn(name = "id_responsavel_tarefa")
 	private Responsavel responsavelTarefa;

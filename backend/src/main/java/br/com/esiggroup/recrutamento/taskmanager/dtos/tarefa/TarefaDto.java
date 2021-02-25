@@ -1,6 +1,5 @@
 package br.com.esiggroup.recrutamento.taskmanager.dtos.tarefa;
 
-
 import br.com.esiggroup.recrutamento.taskmanager.dtos.responsavel.ResponsavelDto;
 import br.com.esiggroup.recrutamento.taskmanager.enums.PrioridadeTarefa;
 import io.swagger.annotations.ApiModel;
@@ -13,26 +12,33 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @ApiModel(
-		value = "Tarefa Insert DTO",
-		description = "DTO utilizado para a inserção de registros na base de dados.")
-public class TarefaInsertDto {
+		value = "Tarefa DTO",
+		description = "DTO padrão utilizado para representar os registros relacionados às tarefas.")
+public class TarefaDto {
 	@ApiModelProperty(
 			position = 1,
 			name = "Título da Tarefa",
-			value = "Título com breve descrição",
+			value = "Identificador numérico da tarefa.",
+			dataType = "String",
+			example = "2")
+	private Long idTarefa;
+	
+	@ApiModelProperty(
+			position = 2,
+			name = "Título da Tarefa",
 			dataType = "String",
 			example = "Testar módulo de vendas.")
 	private String tituloTarefa;
 
 	@ApiModelProperty(
-			position = 2,
+			position = 3,
 			name = "Descrição da Tarefa",
 			dataType = "String",
 			example = "Testar todos os módulos e validar as operações com os outros membros.")
 	private String descricaoTarefa;
 
 	@ApiModelProperty(
-			position = 3,
+			position = 4,
 			name = "Prioridade da Tarefa",
 			dataType = "Integer",
 			value = "Valor numérico para indicar a prioridade da tarefa (0 - Baixa, 1 - Média, 2 - Alta)",
@@ -40,7 +46,7 @@ public class TarefaInsertDto {
 	private PrioridadeTarefa prioridadeTarefa;
 
 	@ApiModelProperty(
-			position = 4,
+			position = 5,
 			name = "Deadline da tarefa",
 			value = "Deadline da tarefa em formato textual",
 			dataType = "String",
@@ -48,9 +54,9 @@ public class TarefaInsertDto {
 	private String deadlineTarefa;
 
 	@ApiModelProperty(
-			position = 5,
+			position = 6,
 			name = "Responsável pela Tarefa",
 			value = "Identificado do responsável pela tarefa",
-			dataType = "ResponsavelDto")
+			dataType = "Long")
 	private ResponsavelDto responsavelTarefa;
 }

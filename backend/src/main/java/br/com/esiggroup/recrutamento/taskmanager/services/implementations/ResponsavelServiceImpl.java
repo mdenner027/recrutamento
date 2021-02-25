@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import br.com.esiggroup.recrutamento.taskmanager.dtos.responsavel.ResponsavelDto;
 import br.com.esiggroup.recrutamento.taskmanager.dtos.responsavel.ResponsavelInsertDto;
@@ -35,15 +37,19 @@ public class ResponsavelServiceImpl implements ResponsavelService {
 		repository.findAll().forEach(responsavel -> {
 			responsaveis.add(mapper.map(responsavel, ResponsavelDto.class));
 		});
+		if (responsaveis.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+		}
 		return responsaveis;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public ResponsavelDto findById(Long idResponsavel) {
+		verifyResponsavel(idResponsavel);
 		ModelMapper mapper = new ModelMapper();
 		Responsavel responsavel = repository.findByIdResponsavel(idResponsavel);
-		return responsavel == null ? null : mapper.map(responsavel, ResponsavelDto.class);
+		return mapper.map(responsavel, ResponsavelDto.class);
 	}
 
 	@Override
@@ -58,18 +64,17 @@ public class ResponsavelServiceImpl implements ResponsavelService {
 	@Override
 	@Transactional
 	public void delete(Long idResponsavel) {
+		verifyResponsavel(idResponsavel);
 		Responsavel responsavel = repository.findByIdResponsavel(idResponsavel);
-		if (responsavel != null) {
-			repository.delete(responsavel);
-		}
+		repository.delete(responsavel);
 	}
 
 	@Override
-	public Boolean existResponsavel(Long idResponsavel) {
+	@Transactional(readOnly = true)
+	public void verifyResponsavel(Long idResponsavel) {
 		if (repository.findByIdResponsavel(idResponsavel) == null) {
-			return false;
-		} else {
-			return true;
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					"Nenhum registro encontrado com o identificador informado: " + idResponsavel);
 		}
 	}
 }
