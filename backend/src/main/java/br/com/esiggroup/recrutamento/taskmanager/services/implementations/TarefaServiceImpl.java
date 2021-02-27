@@ -63,7 +63,44 @@ public class TarefaServiceImpl implements TarefaService {
 		ResponsavelDto resDto = mapper.map(tarefa.getResponsavelTarefa(), ResponsavelDto.class);
 		dtoResponse.setResponsavelTarefa(resDto);
 		dtoResponse.setDeadlineTarefa(new DateParser().formatDate(tarefa.getDeadlineTarefa()));
-		
+
 		return dtoResponse;
+	}
+
+	@Override
+	@Transactional
+	public TarefaDto complete(Long idTarefa) {
+		verifyTarefa(idTarefa);
+		Tarefa tarefa = repository.getOne(idTarefa);
+		tarefa.setStatusTarefa(StatusTarefa.Concluída);
+		tarefa = repository.save(tarefa);
+		TarefaDto dtoResponse = new ModelMapper().map(tarefa, TarefaDto.class);
+		dtoResponse.setDeadlineTarefa(new DateParser().formatDate(tarefa.getDeadlineTarefa()));
+		return dtoResponse;
+	}
+
+	@Override
+	@Transactional
+	public void delete(Long idTarefa) {
+		verifyTarefa(idTarefa);
+		Tarefa tarefa = repository.findByIdTarefa(idTarefa);
+		repository.delete(tarefa);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public TarefaDto findById(Long idTarefa) {
+		ModelMapper mapper = new ModelMapper();
+		Tarefa tarefa = repository.findByIdTarefa(idTarefa);
+		TarefaDto dtoResponse = mapper.map(tarefa, TarefaDto.class);
+		dtoResponse.setDeadlineTarefa(new DateParser().formatDate(tarefa.getDeadlineTarefa()));
+		return dtoResponse;
+	}
+
+	private void verifyTarefa(Long idTarefa) {
+		if (repository.findByIdTarefa(idTarefa) == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					"Nenhuma tarefa encontrada com o identificador informado: " + idTarefa);
+		}
 	}
 }

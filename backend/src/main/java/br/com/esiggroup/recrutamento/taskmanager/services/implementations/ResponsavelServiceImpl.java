@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ResponsavelServiceImpl implements ResponsavelService {
 	private final ResponsavelRepository repository;
-
+	
 	@Override
 	@Transactional
 	public ResponsavelDto save(ResponsavelInsertDto dto) {

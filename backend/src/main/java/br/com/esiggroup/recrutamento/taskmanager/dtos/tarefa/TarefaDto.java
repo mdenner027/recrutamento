@@ -2,6 +2,7 @@ package br.com.esiggroup.recrutamento.taskmanager.dtos.tarefa;
 
 import br.com.esiggroup.recrutamento.taskmanager.dtos.responsavel.ResponsavelDto;
 import br.com.esiggroup.recrutamento.taskmanager.enums.PrioridadeTarefa;
+import br.com.esiggroup.recrutamento.taskmanager.enums.StatusTarefa;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -47,6 +48,13 @@ public class TarefaDto {
 
 	@ApiModelProperty(
 			position = 5,
+			name = "Status da Tarefa",
+			dataType = "Integer",
+			example = "1")
+	private StatusTarefa statusTarefa;
+	
+	@ApiModelProperty(
+			position = 6,
 			name = "Deadline da tarefa",
 			value = "Deadline da tarefa em formato textual",
 			dataType = "String",
@@ -54,7 +62,7 @@ public class TarefaDto {
 	private String deadlineTarefa;
 
 	@ApiModelProperty(
-			position = 6,
+			position = 7,
 			name = "Responsável pela Tarefa",
 			value = "Identificado do responsável pela tarefa",
 			dataType = "Long")

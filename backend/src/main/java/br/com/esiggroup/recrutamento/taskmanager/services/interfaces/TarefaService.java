@@ -9,5 +9,11 @@ public interface TarefaService {
 
 	List<TarefaDto> findAll();
 
+	TarefaDto findById(Long idTarefa);
+
 	TarefaDto save(TarefaInsertDto dto);
+
+	TarefaDto complete(Long idTarefa);
+
+	void delete(Long idTarefa);
 }

@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +44,21 @@ public class TarefaController {
 		return ResponseEntity.status(HttpStatus.OK).body(tarefaService.findAll());
 	}
 	
+	
+	@ApiOperation(
+			value = "Endpoint para buscar uma tarefa específica.",
+			response = TarefaDto.class,
+			httpMethod = "GET")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Registros recuperados com sucesso."),
+			@ApiResponse(code = 204, message = "Nenhum registro encontrado.", response = Object.class),
+			@ApiResponse(code = 500, message = "Erro interno do servidor!") })
+	@GetMapping(value = "/{idTarefa}")
+	public ResponseEntity<TarefaDto> get(@PathVariable Long idTarefa) {
+		return ResponseEntity.status(HttpStatus.OK).body(tarefaService.findById(idTarefa));
+	}
+	
+	
 	@ApiOperation(
 			value = "Endpoint para cadastrar uma nova tarefa no banco de dados.",
 			response = TarefaDto.class,
@@ -52,4 +70,36 @@ public class TarefaController {
 	public ResponseEntity<TarefaDto> save(@RequestBody TarefaInsertDto dto) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(tarefaService.save(dto));
 	}
+	
+	
+	@ApiOperation(
+			value = "Endpoint para marcar uma tarefa como finalizada.",
+			response = TarefaDto.class,
+			httpMethod = "PATCH")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "Tarefa finzalizada com sucesso!"),
+		@ApiResponse(code = 404, message = "Tarefa não encontrada."),
+		@ApiResponse(code = 500, message = "Erro interno do servidor!")
+	})
+	@PatchMapping("/{idTarefa}")
+	public ResponseEntity<TarefaDto> complete(@PathVariable(name = "idTarefa") Long idTarefa) {
+		return ResponseEntity.status(HttpStatus.OK).body(tarefaService.complete(idTarefa));
+	}
+	
+	
+	@ApiOperation(
+			value = "Endpoint deletar uma tarefa do banco de dados.",
+			response = Object.class,
+			httpMethod = "DELETE")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "Tarefa finzalizada com sucesso!"),
+		@ApiResponse(code = 404, message = "Tarefa não encontrada."),
+		@ApiResponse(code = 500, message = "Erro interno do servidor!")
+	})
+	@DeleteMapping("/{idTarefa}")
+	public ResponseEntity<Void> delete(@PathVariable(name = "idTarefa") Long idTarefa) {
+		tarefaService.delete(idTarefa);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+
 }

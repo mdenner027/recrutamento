@@ -6,4 +6,6 @@ import br.com.esiggroup.recrutamento.taskmanager.models.Tarefa;
 
 public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
 
+	Tarefa findByIdTarefa(Long idTarefa);
+
 }

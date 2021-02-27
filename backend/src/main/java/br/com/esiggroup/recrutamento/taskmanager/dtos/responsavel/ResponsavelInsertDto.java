@@ -17,6 +17,6 @@ public class ResponsavelInsertDto {
 			value = "Nome do responsável", 
 			required = true, 
 			dataType = "String",
-			example = "Ex.: João Macedo Morais")
+			example = "João Macedo Morais")
 	private String nomeResponsavel;
 }
