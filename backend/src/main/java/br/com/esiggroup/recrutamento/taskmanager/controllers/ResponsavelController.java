@@ -24,7 +24,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/responsaveis")
-@Api(tags = "Endpoints da entidade \"Responsável\"",value = "/responsaveis")
+@Api(tags = {"responsaveis"},value = "/responsaveis")
 @AllArgsConstructor
 public class ResponsavelController {
 	

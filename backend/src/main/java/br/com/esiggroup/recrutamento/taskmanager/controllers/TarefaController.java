@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.esiggroup.recrutamento.taskmanager.dtos.tarefa.TarefaDto;
 import br.com.esiggroup.recrutamento.taskmanager.dtos.tarefa.TarefaInsertDto;
+import br.com.esiggroup.recrutamento.taskmanager.enums.StatusTarefa;
 import br.com.esiggroup.recrutamento.taskmanager.services.interfaces.TarefaService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,7 +27,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(value = "/tarefas")
-@Api(tags = "Endpoints da entidade \"Tarefa\"", value = "/tarefas")
+@Api(tags = {"tarefas"} )
 @AllArgsConstructor
 public class TarefaController {
 	
@@ -50,12 +53,32 @@ public class TarefaController {
 			response = TarefaDto.class,
 			httpMethod = "GET")
 	@ApiResponses(value = { 
-			@ApiResponse(code = 200, message = "Registros recuperados com sucesso."),
+			@ApiResponse(code = 200, message = "Registro recuperado com sucesso."),
 			@ApiResponse(code = 204, message = "Nenhum registro encontrado.", response = Object.class),
 			@ApiResponse(code = 500, message = "Erro interno do servidor!") })
 	@GetMapping(value = "/{idTarefa}")
 	public ResponseEntity<TarefaDto> get(@PathVariable Long idTarefa) {
 		return ResponseEntity.status(HttpStatus.OK).body(tarefaService.findById(idTarefa));
+	}
+	
+	
+	@ApiOperation(
+			value = "Endpoint para filtrar tarefas.",
+			response = TarefaDto.class,
+			responseContainer = "List",
+			httpMethod = "GET")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Registros recuperados com sucesso."),
+			@ApiResponse(code = 204, message = "Nenhum registro encontrado.", response = Object.class),
+			@ApiResponse(code = 500, message = "Erro interno do servidor!") })
+	@GetMapping("/filter")
+	public ResponseEntity<List<TarefaDto>> get(
+			@RequestParam(required = false, defaultValue = "", name = "idTarefa") Long idTarefa,
+			@RequestParam(required = false, defaultValue = "", name = "tituloOuDescricao") String tituloDescricao,
+			@RequestParam(required = false, defaultValue = "", name = "statusTarefa") StatusTarefa status,
+			@RequestParam(required = false, defaultValue = "",name = "idResponsavel") Long idResponsavel) {
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(tarefaService.filter(idTarefa, tituloDescricao, status, idResponsavel));
 	}
 	
 	
@@ -71,6 +94,19 @@ public class TarefaController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(tarefaService.save(dto));
 	}
 	
+	
+	@ApiOperation(
+			value = "Endpoint para atualizar uma tarefa no banco de dados.",
+			response = TarefaDto.class,
+			httpMethod = "PUT")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "Tarefa cadastrada com sucesso!"),
+		@ApiResponse(code = 404, message = "Tarefa não encontrada."),
+		@ApiResponse(code = 500, message = "Erro interno do servidor!")})
+	@PutMapping
+	public ResponseEntity<TarefaDto> update(@RequestBody TarefaDto dto) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(tarefaService.save(dto));
+	}
 	
 	@ApiOperation(
 			value = "Endpoint para marcar uma tarefa como finalizada.",

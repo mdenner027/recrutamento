@@ -90,11 +90,88 @@ public class TarefaServiceImpl implements TarefaService {
 	@Override
 	@Transactional(readOnly = true)
 	public TarefaDto findById(Long idTarefa) {
+		verifyTarefa(idTarefa);
 		ModelMapper mapper = new ModelMapper();
 		Tarefa tarefa = repository.findByIdTarefa(idTarefa);
 		TarefaDto dtoResponse = mapper.map(tarefa, TarefaDto.class);
 		dtoResponse.setDeadlineTarefa(new DateParser().formatDate(tarefa.getDeadlineTarefa()));
 		return dtoResponse;
+	}
+
+	@Override
+	@Transactional
+	public TarefaDto update(TarefaDto dto) {
+		verifyTarefa(dto.getIdTarefa());
+		ModelMapper mapper = new ModelMapper();
+		Responsavel responsavel = mapper.map(dto.getResponsavelTarefa(), Responsavel.class);
+
+		Tarefa tarefa = mapper.map(dto, Tarefa.class);
+		tarefa.setResponsavelTarefa(responsavel);
+		tarefa.setDeadlineTarefa(new DateParser().parse(dto.getDeadlineTarefa()));
+		tarefa = repository.save(tarefa);
+
+		TarefaDto dtoResponse = mapper.map(tarefa, TarefaDto.class);
+		dtoResponse.setDeadlineTarefa(new DateParser().formatDate(tarefa.getDeadlineTarefa()));
+		dtoResponse.setResponsavelTarefa(mapper.map(tarefa.getResponsavelTarefa(), ResponsavelDto.class));
+
+		return dtoResponse;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<TarefaDto> filter(Long idTarefa, String tituloDescricao, StatusTarefa status, Long idResponsavel) {
+		ModelMapper mapper = new ModelMapper();
+		List<Tarefa> tarefas = repository.findAll();
+
+		if (idResponsavel != null) {
+			tarefas = filterByResponsavel(idResponsavel, tarefas);
+		}
+
+		if (!tituloDescricao.isEmpty() && !tituloDescricao.isBlank()) {
+			tarefas = filterByTituloOuDescricao(tituloDescricao, tarefas);
+		}
+
+		if (status != null) {
+			tarefas = filterByStatus(status, tarefas);
+		}
+
+		if (idTarefa != null) {
+			tarefas = filterByIdTarefa(idTarefa, tarefas);
+		}
+
+		List<TarefaDto> listResponse = new ArrayList<>();
+
+		tarefas.forEach(t -> {
+			TarefaDto tarefa = mapper.map(t, TarefaDto.class);
+			tarefa.setDeadlineTarefa(new DateParser().formatDate(t.getDeadlineTarefa()));
+			listResponse.add(tarefa);
+		});
+
+		if (listResponse.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT,
+					"Nenhum registro econtado com essas especificações");
+		}
+		return listResponse;
+	}
+
+	private List<Tarefa> filterByIdTarefa(Long idTarefa, List<Tarefa> tarefas) {
+		tarefas.removeIf(t -> t.getIdTarefa() != idTarefa);
+		return tarefas;
+	}
+
+	private List<Tarefa> filterByResponsavel(Long idResponsavel, List<Tarefa> tarefas) {
+		tarefas.removeIf(t -> t.getResponsavelTarefa().getIdResponsavel() != idResponsavel);
+		return tarefas;
+	}
+
+	private List<Tarefa> filterByTituloOuDescricao(String filtro, List<Tarefa> tarefas) {
+		tarefas.removeIf(t -> !(t.getTituloTarefa().startsWith(filtro) || t.getDescricaoTarefa().startsWith(filtro)));
+		return tarefas;
+	}
+
+	private List<Tarefa> filterByStatus(StatusTarefa status, List<Tarefa> tarefas) {
+		tarefas.removeIf(t -> t.getStatusTarefa() != status);
+		return tarefas;
 	}
 
 	private void verifyTarefa(Long idTarefa) {

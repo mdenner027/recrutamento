@@ -18,7 +18,7 @@ public class ResponsavelDto {
 			required = true, 
 			dataType = "Long",
 			position = 1,
-			example = "2")
+			example = "1")
 	private Long idResponsavel;
 	
 	@ApiModelProperty(
