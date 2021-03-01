@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.esiggroup.recrutamento.taskmanager.dtos.usuario.UsuarioDto;
-import br.com.esiggroup.recrutamento.taskmanager.dtos.usuario.UsuarioInsertDto;
 import br.com.esiggroup.recrutamento.taskmanager.models.Usuario;
 import br.com.esiggroup.recrutamento.taskmanager.repositories.UsuarioRepository;
 
@@ -36,7 +35,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		}
 	}
 
-	public UsuarioDto save(UsuarioInsertDto dto) {
+	public UsuarioDto save(UsuarioDto dto) {
 		Usuario usuario = new Usuario();
 		usuario.setLoginUsuario(dto.getLoginUsuario());
 		usuario.setSenhaUsuario(passwordEncoder.encode(dto.getSenhaUsuario()));

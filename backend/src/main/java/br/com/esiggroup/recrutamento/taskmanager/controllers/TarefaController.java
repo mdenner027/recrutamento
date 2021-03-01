@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/tarefas")
+@RequestMapping(value = "/admin/tarefas")
 @Api(tags = {"tarefas"} )
 @AllArgsConstructor
 public class TarefaController {

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.esiggroup.recrutamento.taskmanager.dtos.usuario.UsuarioDto;
-import br.com.esiggroup.recrutamento.taskmanager.dtos.usuario.UsuarioInsertDto;
 import br.com.esiggroup.recrutamento.taskmanager.models.Usuario;
 import br.com.esiggroup.recrutamento.taskmanager.repositories.UsuarioRepository;
 import br.com.esiggroup.recrutamento.taskmanager.services.interfaces.UsuarioService;
@@ -24,7 +23,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public UsuarioDto save(UsuarioInsertDto dto) {
+	public UsuarioDto save(UsuarioDto dto) {
 		ModelMapper mapper = new ModelMapper();
 		Usuario user = new Usuario();
 		user.setLoginUsuario(dto.getLoginUsuario());
