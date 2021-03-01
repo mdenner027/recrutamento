@@ -105,7 +105,7 @@ public class TarefaController {
 		@ApiResponse(code = 500, message = "Erro interno do servidor!")})
 	@PutMapping
 	public ResponseEntity<TarefaDto> update(@RequestBody TarefaDto dto) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(tarefaService.save(dto));
+		return ResponseEntity.status(HttpStatus.OK).body(tarefaService.update(dto));
 	}
 	
 	@ApiOperation(

@@ -39,7 +39,11 @@ public class SwaggerConfig {
 		Contact contact = new Contact("Max Denner","https://www.linkedin.com/in/max-denner-t-da-silva-a72bb5165/", "maxdenner027@hotmail.com");
 		return new ApiInfoBuilder()
 				.title("Sistema para gerenciamento de tarefas")
-				.description("API de teste")
+				.description("O task-manager trata-se de uma API desenvolvida como "
+						+ "atividade técnica para o processo seletivo referente à vaga de "
+						+ "desenvolvedor backend Java, da Esig Group."
+						+ "\nDe forma simplificada, a presente API permite o cadastramento e gerenciamento de tarefas e "
+						+ "de responsáveis que estão ligados às tarefas.")
 				.version("1.0")
 				.contact(contact)
 				.build();
