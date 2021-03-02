@@ -1,0 +1,17 @@
+<div class="container">
+    <mat-card class="card">
+        <mat-card-title class="card-title">Cadastrar Novo Responsável</mat-card-title>
+        <mat-card-content class="content">
+            <button type="button" (click)="redirectAdiciona()"
+                class="add-button" mat-raised-button color="primary">
+                Novo Responsável <i class="material-icons">add</i>
+            </button>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="responsaveis-registrados">
+        <mat-card-title class="card-title">Responsáveis Registrados</mat-card-title>
+        <mat-card-content class="content">
+            <app-lista-responsaveis></app-lista-responsaveis>
+        </mat-card-content>
+    </mat-card>
+</div>

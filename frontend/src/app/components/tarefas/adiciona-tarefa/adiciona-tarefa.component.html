@@ -1,0 +1,67 @@
+<div class="container">
+    <mat-card class="card">
+        <mat-card-title class="card-title">Cadastrar Tarefa</mat-card-title>
+        <mat-card-content class="content">
+            <form action="">
+                <mat-form-field>
+                    <mat-label>Título da Tarefa</mat-label>
+                    <input 
+                        type="text" 
+                        matInput 
+                        placeholder="Testar Módulo de Cadastro de Clientes"
+                        name="tituloTarefa" 
+                        [(ngModel)]="tarefa.tituloTarefa"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Descrição da Tarefa</mat-label>
+                    <textarea 
+                        matInput placeholder="Ex.: Testar o módulo de cadastro com os demais stakeholders."
+                        name="descricaoTarefa"
+                        [(ngModel)]="tarefa.descricaoTarefa"></textarea>
+                </mat-form-field>
+                <div class="selects">
+                    <mat-form-field class="select1" appearance="fill">
+                        <mat-label>Responsável pela Tarefa</mat-label>
+                        <mat-select 
+                            name="responsavelTarefa"
+                            matNativeControl 
+                            required
+                            [(ngModel)]="tarefa.responsavelTarefa.idResponsavel">
+                            <mat-option *ngFor="let r of responsaveis" [value]="r.idResponsavel">
+                                {{r.nomeResponsavel}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="select2" appearance="fill">
+                        <mat-label>Prioridade da Tarefa</mat-label>
+                        <mat-select 
+                            matNativeControl 
+                            required
+                            name="prioridadeTarefa"
+                            [(ngModel)]="tarefa.prioridadeTarefa">
+                            <mat-option value="0">Baixa</mat-option>
+                            <mat-option value="1">Média</mat-option>
+                            <mat-option value="2">Alta</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <mat-form-field class="date-input" appearance="fill">
+                    <mat-label>Deadline da Tarefa</mat-label>
+                    <input 
+                        matInput 
+                        name="deadlineTarefa"
+                        [matDatepicker]="picker"
+                        [(ngModel)]="tarefa.deadlineTarefa">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </form>
+            <button mat-raised-button (click)="voltar()" color="warn">
+                Voltar
+            </button>
+            <button (click)="saveTarefa()" class="btn-success" mat-raised-button color="primary">
+                Cadastrar
+            </button>
+        </mat-card-content>
+    </mat-card>
+</div>

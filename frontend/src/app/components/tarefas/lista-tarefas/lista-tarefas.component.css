@@ -1,0 +1,75 @@
+table {
+    width: 100%;
+}
+
+.content{
+    padding-top: 20px;
+}
+.actions-header{
+    text-align: center;
+}
+
+.card , .tarefas-registradas{
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons {
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.card-filtro {
+    margin-top: 20px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form {   
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-blue {
+    background-color: var(--btn-blue);
+}
+
+button i {
+    padding-left: 5px;
+}
+
+.reset {
+    margin-left: 10px;
+}
+
+.btn-success{
+    background-color: #096b35;
+}
+
+.id-input {
+    width: 20.5%;
+}
+
+.selects {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.select1, .select2 {
+    width: 50%;
+}
+
+.select2 {
+   margin-left: 12px;
+}

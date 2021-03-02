@@ -1,0 +1,101 @@
+<mat-expansion-panel class="card-filtro">
+  <mat-expansion-panel-header>
+    <mat-panel-title>Filtrar Tarefas</mat-panel-title>
+  </mat-expansion-panel-header>
+  <form action="">
+    <mat-form-field class="id-input">
+      <mat-label>Número da Tarefa (id)</mat-label>
+      <input 
+        type="text" 
+        [(ngModel)]="filtro.idTarefa" 
+        matInput 
+        placeholder="2" 
+        name="idTarefa" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Título ou Descrição da Tarefa</mat-label>
+      <input 
+        type="text" 
+        [(ngModel)]="filtro.tituloOuDescricao"
+        matInput 
+        placeholder="Testar Módulo de Cadastro de Clientes" 
+        name="tituloTarefa" />
+    </mat-form-field>
+    <div class="selects">
+      <mat-form-field class="select1" appearance="fill">
+        <mat-label>Responsável pela Tarefa</mat-label>
+        <mat-select 
+          [(ngModel)]="filtro.idResponsavel" 
+          matNativeControl 
+          name="idResponsavel">
+          <mat-option value=""></mat-option>
+          <mat-option *ngFor="let r of responsaveis" [value]="r.idResponsavel">
+            {{r.nomeResponsavel}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="select2" appearance="fill">
+        <mat-label>Status da Tarefa</mat-label>
+        <mat-select 
+          [(ngModel)]="filtro.statusTarefa" 
+          matNativeControl 
+          name="statusTarefa">
+          <mat-option value=""></mat-option>
+          <mat-option value="0">Em andamento</mat-option>
+          <mat-option value="1">Concluída</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+  <button mat-raised-button (click)="filtrarTarefas()" class="btn-blue" color="primary">
+    Filtrar <i class="material-icons">search</i>
+  </button>
+  <button (click)="limpaFiltro()" mat-raised-button type="reset" class="reset" color="warn">
+    Limpar Pesquisa<i class="material-icons">clear</i>
+  </button>
+</mat-expansion-panel>
+<mat-card class="tarefas-registradas">
+  <mat-card-title class="card-title">Tarefas Registradas</mat-card-title>
+  <mat-card-content class="content">
+    <div class="mat-elevation-z4">
+      <table mat-table [dataSource]="tarefas">
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="numero">
+          <th mat-header-cell *matHeaderCellDef>Número</th>
+          <td class="td-cells" mat-cell *matCellDef="let row">{{row.idTarefa}}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="titulo">
+          <th mat-header-cell *matHeaderCellDef>Título</th>
+          <td mat-cell *matCellDef="let row">{{row.tituloTarefa}}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="responsavel">
+          <th mat-header-cell *matHeaderCellDef>Responsavel</th>
+          <td mat-cell *matCellDef="let row">{{row.responsavelTarefa.nomeResponsavel}}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="prioridade">
+          <th mat-header-cell *matHeaderCellDef>Deadline</th>
+          <td mat-cell *matCellDef="let row">{{row.deadlineTarefa}}</td>
+        </ng-container>
+
+        <!--Actions Column-->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell class="actions-header" *matHeaderCellDef>Ações</th>
+          <td class="actions" mat-cell *matCellDef="let row">
+            <a class="buttons btn-blue" color="primary" mat-raised-button>Editar</a>
+            <a class="buttons" mat-raised-button color="warn">Excluir</a>
+            <a class="buttons btn-success"  mat-raised-button color="primary">Concluir</a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

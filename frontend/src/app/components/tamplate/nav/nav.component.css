@@ -1,0 +1,57 @@
+.nav {
+    width: 250px;
+    background-color: #096b35;
+    box-shadow: 1px 1px 10px rgb(70, 69, 69);
+}
+
+.nav-header {
+    justify-content: center;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 60px;
+}
+
+.nav-body {
+    position: relative;
+    top: 15px;
+}
+
+.divider {
+    background-color: rgba(255, 255, 255, 0.664);
+}
+
+.nav-list a {
+    vertical-align: middle;
+    color: #fff;
+    font-size: 14px;
+    padding-top: 7px;
+    padding-bottom: 6px;
+    font-weight: 200;
+}
+
+
+.nav-list a i {
+    padding-right: 5px;
+    color: rgba(255, 255, 255, 0.431);
+    vertical-align: middle;
+}
+
+.nav-item {
+    width: 200px;
+    padding: 10px;
+}
+
+.active {
+    width: 200px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #fff;
+    color:  #096b35 !important;
+}
+
+.active > i {
+    color: #096b35 !important;
+}
+

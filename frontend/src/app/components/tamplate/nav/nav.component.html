@@ -1,0 +1,33 @@
+<mat-sidenav-container>
+    <mat-sidenav class="nav" fixedInViewport="true" opened mode="side">
+        <mat-nav-list class="nav-list">
+            <h3 matSubheader class="nav-header">
+                Task Manager
+            </h3>
+            <mat-divider class="divider"></mat-divider>
+            <span class="nav-body">
+                <a routerLink="/" mat-list-item>
+                    <span class="active">
+                        <i class="icone material-icons" outline>home</i>
+                        Início
+                    </span>
+                </a>
+                <a routerLink="/tarefas" mat-list-item>
+                    <span class="nav-item">
+                        <i class="icone material-icons">task</i>
+                        Tarefas
+                    </span>
+                </a>
+                <a routerLink="/responsaveis" mat-list-item>
+                    <span class="nav-item">
+                        <i class="icone material-icons">hail</i>
+                        Responsáveis
+                    </span>
+                </a>
+            </span>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

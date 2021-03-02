@@ -1,0 +1,12 @@
+.header {
+    background-image: linear-gradient(to right, #0b223e, #2a5687);
+    height: 90px;
+    width: 100%;
+}
+
+.header-title {
+    padding-left: 260px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.1rem;
+}

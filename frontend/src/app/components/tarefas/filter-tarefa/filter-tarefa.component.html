@@ -1,0 +1,36 @@
+<mat-expansion-panel class="card-filtro">
+    <mat-expansion-panel-header>
+        <mat-panel-title>Filtrar Tarefas</mat-panel-title>
+    </mat-expansion-panel-header>
+    <form action="">
+        <mat-form-field class="id-input">
+            <mat-label>Número da Tarefa (id)</mat-label>
+            <input type="text" matInput placeholder="2" name="idTarefa" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Título ou Descrição da Tarefa</mat-label>
+            <input type="text" matInput placeholder="Testar Módulo de Cadastro de Clientes" name="tituloTarefa" />
+        </mat-form-field>
+        <div class="selects">
+            <mat-form-field class="select1" appearance="fill">
+                <mat-label>Responsável pela Tarefa</mat-label>
+                <mat-select matNativeControl required>
+                    <mat-option *ngFor="let r of responsaveis" [value]="r.idResponsavel">
+                        {{r.nomeResponsavel}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="select2" appearance="fill">
+                <mat-label>Prioridade da Tarefa</mat-label>
+                <mat-select matNativeControl required>
+                    <mat-option value="0">Baixa</mat-option>
+                    <mat-option value="1">Média</mat-option>
+                    <mat-option value="2">Alta</mat-option>
+                </mat-select>
+            </mat-form-field>  
+        </div>
+    </form>
+    <button mat-raised-button color="primary">
+        Pesquisar <i class="material-icons">search</i>
+    </button> 
+</mat-expansion-panel>
