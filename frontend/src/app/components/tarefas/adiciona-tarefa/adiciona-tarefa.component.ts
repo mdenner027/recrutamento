@@ -33,7 +33,7 @@ export class AdicionaTarefaComponent implements OnInit {
       this.responsaveis = list;
     }, () => {
       this.responService.showMessage("Ops! Não foi possível listar os responsáveis.");
-    })
+    });
   }
 
   saveTarefa():void {

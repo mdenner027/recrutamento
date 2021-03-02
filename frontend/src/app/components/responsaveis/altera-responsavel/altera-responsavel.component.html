@@ -1,1 +1,24 @@
-<p>altera-responsavel works!</p>
+<div class="container">
+    <mat-card class="card">
+        <mat-card-title class="card-title">Atualizar Responsável</mat-card-title>
+        <mat-card-content class="content">
+            <form action="">
+                <mat-form-field>
+                    <mat-label>Nome do Responsável</mat-label>
+                    <input 
+                        type="text" 
+                        matInput 
+                        placeholder="João Almeida Oliveira"
+                        name="nome" 
+                        [(ngModel)]="responsavel.nomeResponsavel"/>
+                </mat-form-field>
+            </form>
+            <button mat-raised-button (click)="voltar()" color="warn">
+                Voltar
+            </button>
+            <button (click)="updateResponsavel()" class="btn-success" mat-raised-button color="primary">
+                Atualizar
+            </button>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -30,6 +30,18 @@ export class TarefasService {
     return this.http.get<Tarefa[]>(this.baseUrl);
   }
 
+  update(tarefa: Tarefa): Observable<Tarefa> {
+    return this.http.put<Tarefa>(this.baseUrl, tarefa);
+  }
+
+  findById(idTarefa: string):Observable<Tarefa>{
+    return this.http.get<Tarefa>(`${this.baseUrl}/${idTarefa}`);
+  }
+
+  delete(idTarefa: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${idTarefa}`);
+  }
+
   getTarefasFilter(filtro: TarefaFilter): Observable<Tarefa[]> {
     return this.http.get<Tarefa[]>(`${this.baseUrl}/filter`, {
       params: {

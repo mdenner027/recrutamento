@@ -19,4 +19,8 @@ export class ResponsaveisComponent implements OnInit {
   redirectAdiciona() {
     this.router.navigate(["/cadastrar-responsavel"]);
   }
+
+  redirectAltera(id:number){
+    this.router.navigate([''])
+  }
 }

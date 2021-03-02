@@ -88,7 +88,7 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell class="actions-header" *matHeaderCellDef>Ações</th>
           <td class="actions" mat-cell *matCellDef="let row">
-            <a class="buttons btn-blue" color="primary" mat-raised-button>Editar</a>
+            <a routerLink="/tarefas/altera-tarefa/{{row.idTarefa}}" class="buttons btn-blue" color="primary" mat-raised-button>Editar</a>
             <a class="buttons" mat-raised-button color="warn">Excluir</a>
             <a class="buttons btn-success"  mat-raised-button color="primary">Concluir</a>
           </td>

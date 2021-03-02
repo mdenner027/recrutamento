@@ -25,11 +25,19 @@ export class ResponsaveisService {
     return this.http.post<Responsavel>(this.baseUrl, responsavel);
   }
 
+  update(responsavel: Responsavel): Observable<Responsavel> {
+    return this.http.put<Responsavel>(this.baseUrl, responsavel);
+  }
+
   get(): Observable<Responsavel[]> {
     return this.http.get<Responsavel[]>(this.baseUrl);
   }
 
   delete(idResponsavel: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${idResponsavel}`);
+  }
+
+  findById(idResponsavel: string):Observable<Responsavel>{
+    return this.http.get<Responsavel>(`${this.baseUrl}/${idResponsavel}`);
   }
 }
