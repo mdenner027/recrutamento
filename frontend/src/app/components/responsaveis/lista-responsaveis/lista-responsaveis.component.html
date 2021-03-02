@@ -17,7 +17,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell class="actions-header" *matHeaderCellDef>Ações</th>
         <td class="actions" mat-cell *matCellDef="let row">
-          <a routerLink="/responsaveis/altera-responsavel/{{row.idResponsavel}}" class="buttons" mat-raised-button color="">Editar</a>
+          <a class="buttons btn-blue" routerLink="/responsaveis/altera-responsavel/{{row.idResponsavel}}" mat-raised-button color="primary">Editar</a>
           <a class="buttons" (click)="removeResponsavel(row.idResponsavel)" mat-raised-button color="warn">Excluir</a>
         </td>
       </ng-container>

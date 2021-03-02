@@ -34,12 +34,16 @@ export class TarefasService {
     return this.http.put<Tarefa>(this.baseUrl, tarefa);
   }
 
-  findById(idTarefa: string):Observable<Tarefa>{
+  findById(idTarefa: string): Observable<Tarefa> {
     return this.http.get<Tarefa>(`${this.baseUrl}/${idTarefa}`);
   }
 
   delete(idTarefa: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${idTarefa}`);
+  }
+
+  concluir(idTarefa: string): Observable<Tarefa> {
+    return this.http.patch<Tarefa>(`${this.baseUrl}/${idTarefa}`, null);
   }
 
   getTarefasFilter(filtro: TarefaFilter): Observable<Tarefa[]> {

@@ -28,6 +28,10 @@ export class ListaTarefasComponent implements OnInit {
   constructor(private service: TarefasService, private responService: ResponsaveisService) { }
 
   ngOnInit(): void {
+    this.refresh();
+  }
+
+  refresh():void{
     this.service.getTarefas().subscribe(list => {
       this.tarefas = list;
     }, () => {
@@ -37,7 +41,7 @@ export class ListaTarefasComponent implements OnInit {
     this.responService.get().subscribe(list => {
       this.responsaveis = list;
     }, () => {
-      this.service.showMessage("Ops! Não foi possível listar os responsáveis");
+      this.service.showMessage("Ops! Não foi possível listar os registros");
     });
   }
 
@@ -46,6 +50,25 @@ export class ListaTarefasComponent implements OnInit {
       this.tarefas = lista;
     }, () => {
       this.service.showMessage("Ops! Algo de errado aconteceu");
+    });
+  }
+
+
+  removeTarefa(idTarefa: number): void {
+    this.service.delete(idTarefa).subscribe(() => {
+      this.service.showMessage("Tarefa removida com sucesso!");
+      this.refresh();
+    }, () => {
+      this.service.showMessage("Ops! Não foi possível remover o registro.");
+    });
+  }
+
+  concluir(idTarefa: string): void {
+    this.service.concluir(idTarefa).subscribe(() => {
+      this.service.showMessage("Tarefa concluída com sucesso!");
+      this.refresh();
+    }, () => {
+      this.service.showMessage("Ops! Não foi possível remover o registro.");
     });
   }
 

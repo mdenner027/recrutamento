@@ -38,6 +38,7 @@ import { AlteraResponsavelComponent } from './components/responsaveis/altera-res
 import { FilterTarefaComponent } from './components/tarefas/filter-tarefa/filter-tarefa.component';
 import { ListaTarefasComponent } from './components/tarefas/lista-tarefas/lista-tarefas.component';
 import { AlteraTarefaComponent } from './components/tarefas/altera-tarefa/altera-tarefa.component';
+import { LoginComponent } from './views/login/login.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -56,7 +57,8 @@ registerLocaleData(localePt, 'pt-BR');
     AlteraResponsavelComponent,
     FilterTarefaComponent,
     ListaTarefasComponent,
-    AlteraTarefaComponent
+    AlteraTarefaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

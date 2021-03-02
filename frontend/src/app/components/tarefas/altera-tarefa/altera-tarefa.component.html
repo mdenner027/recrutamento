@@ -38,10 +38,10 @@
                             matNativeControl 
                             required
                             name="prioridadeTarefa"
-                            [(ngModel)]="tarefa.prioridadeTarefa">
-                            <mat-option value="0">Baixa</mat-option>
-                            <mat-option value="1">Média</mat-option>
-                            <mat-option value="2">Alta</mat-option>
+                            [(ngModel)]="tarefa.prioridadeTarefa">>
+                            <mat-option *ngFor="let o of options" [value]="o.value">
+                                {{o.name}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -51,7 +51,8 @@
                         matInput 
                         name="deadlineTarefa"
                         [matDatepicker]="picker"
-                        [(ngModel)]="tarefa.deadlineTarefa">
+                        [(ngModel)]="tarefa.deadlineTarefa"
+                        >
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -60,7 +61,7 @@
                 Voltar
             </button>
             <button (click)="updateTarefa()" class="btn-success" mat-raised-button color="primary">
-                Cadastrar
+                Atualizar
             </button>
         </mat-card-content>
     </mat-card>

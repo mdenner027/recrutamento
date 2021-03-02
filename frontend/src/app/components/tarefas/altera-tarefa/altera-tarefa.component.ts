@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponsaveisService } from '../../responsaveis/responsaveis.service';
 import { Responsavel } from '../../responsaveis/responsavel.model';
@@ -12,15 +13,26 @@ import { TarefasService } from '../tarefas.service';
 })
 export class AlteraTarefaComponent implements OnInit {
 
+  public options = [
+    { "value": 0, "name": "Baixa" },
+    { "value": 1, "name": "Média" },
+    { "value": 2, "name": "Alta" }
+  ]
+
   tarefa: Tarefa = {
     deadlineTarefa: '',
     prioridadeTarefa: null,
     descricaoTarefa: '',
-    responsavelTarefa: null,
+    responsavelTarefa: {
+      nomeResponsavel: '',
+      idResponsavel: null
+    },
     tituloTarefa: '',
     idTarefa: null,
     statusTarefa: null
   }
+
+  date1 = new FormControl(new Date());
 
   responsaveis: Responsavel[];
 
@@ -34,6 +46,7 @@ export class AlteraTarefaComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.tarefaService.findById(id).subscribe(tarefa => {
       this.tarefa = tarefa;
+      this.date1 = new FormControl(new Date(this.tarefa.deadlineTarefa));
     }, () => {
       this.tarefaService.showMessage("Ops! Algo de errado aconteceu.");
     });
@@ -45,6 +58,8 @@ export class AlteraTarefaComponent implements OnInit {
   }
 
   updateTarefa(): void {
+    let date = new Date(this.tarefa.deadlineTarefa);
+    this.tarefa.deadlineTarefa = date.toLocaleDateString();
     this.tarefaService.update(this.tarefa).subscribe(() => {
       this.router.navigate(['/tarefas']);
       this.tarefaService.showMessage("Tarefa atualizada com sucesso!")

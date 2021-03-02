@@ -39,7 +39,6 @@ export class AdicionaTarefaComponent implements OnInit {
   saveTarefa():void {
     let date = new Date(this.tarefa.deadlineTarefa);
     this.tarefa.deadlineTarefa = date.toLocaleDateString();
-    alert(this.tarefa.deadlineTarefa);
     this.service.saveTarefa(this.tarefa).subscribe(() => {
       this.service.showMessage("Tarefa cadastrada com sucesso!");
       this.router.navigate(['/tarefas']);

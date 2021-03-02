@@ -89,8 +89,8 @@
           <th mat-header-cell class="actions-header" *matHeaderCellDef>Ações</th>
           <td class="actions" mat-cell *matCellDef="let row">
             <a routerLink="/tarefas/altera-tarefa/{{row.idTarefa}}" class="buttons btn-blue" color="primary" mat-raised-button>Editar</a>
-            <a class="buttons" mat-raised-button color="warn">Excluir</a>
-            <a class="buttons btn-success"  mat-raised-button color="primary">Concluir</a>
+            <a (click)="removeTarefa(row.idTarefa)" class="buttons" mat-raised-button color="warn">Excluir</a>
+            <a (click)="concluir(row.idTarefa)" class="buttons btn-success"  mat-raised-button color="primary">Concluir</a>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
