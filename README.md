@@ -1,6 +1,6 @@
 <h1>Task Manager</h1>
 <h2>Sobre o Projeto</h2>
-<p>O Task Manager trata-se de um sistema desenvolvido como forma de atividade avaliativa da Esig Group.</p>
+<p>O Task Manager trata-se de um sistema desenvolvido como forma de avaliação técnica da Esig Group.</p>
 <h2> O que foi feito no projeto</h2>
 <p>Com base no que foi solicitado para a realização da atividade técnica, foram implementados os seguintes itens:</p>
 <ul>
