@@ -26,7 +26,7 @@
       Versão com autenticação por meio de JWT.
       <ul>
          <li>Essa é a versão padrão do projeto que foi requisitado na avaliação técnica e, por tal motivo, utiliza JWT para autenticação. </li>
-         <li>Esta versão do projeto pode ser acessada no linke <a href="https://recrutamento-manager-com-jwt.herokuapp.com/" target="_blank">https://recrutamento-manager-com-jwt.herokuapp.com/</a>.
+         <li>Esta versão do projeto pode ser acessada no link <a href="https://recrutamento-manager-com-jwt.herokuapp.com/" target="_blank">https://recrutamento-manager-com-jwt.herokuapp.com/</a>.
          </li>
          <li>Além disso, sua documentação pode ser encontrada em <a href="https://recrutamento-manager-com-jwt.herokuapp.com/swagger-ui.html" target="blank">Documentação com Swagger</a>. Na interface da documentação, também é possível testar os endpoints da aplicação.
          </li>
