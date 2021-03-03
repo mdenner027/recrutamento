@@ -9,7 +9,7 @@ import { Responsavel } from './responsavel.model';
 })
 export class ResponsaveisService {
 
-  baseUrl = "http://localhost:8080/admin/responsaveis";
+  baseUrl = "https://recrutamento-manager-sem-jwt.herokuapp.com/admin/responsaveis";
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 

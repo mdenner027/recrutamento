@@ -10,7 +10,7 @@ import { Tarefa } from './tarefa.model';
 })
 export class TarefasService {
 
-  baseUrl = "http://localhost:8080/admin/tarefas";
+  baseUrl = "https://recrutamento-manager-sem-jwt.herokuapp.com/admin/tarefas";
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
