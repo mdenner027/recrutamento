@@ -9,7 +9,7 @@
    <li> c) Os endpoints devem ser em REST</li>
    <li> d) A aplicação deverá ter um controle de login por usuário e senha e os endpoints devem autenticar através de token JWT.</li>
    <li> 
-      Catalogar as chamadas dos endpoints no VS Code REST Client( https://marketplace.visualstudio.com/items?itemName=humao.rest-client )
+      e) Catalogar as chamadas dos endpoints no VS Code REST Client( https://marketplace.visualstudio.com/items?itemName=humao.rest-client )
       ou no Postman (ver em <a href="#testar">Como Testar o Projeto</a>)
    </li>
 </ul>
@@ -26,7 +26,7 @@
       Versão com autenticação por meio de JWT.
       <ul>
          <li>Essa é a versão padrão do projeto que foi requisitado na avaliação técnica e, por tal motivo, utiliza JWT para autenticação. </li>
-         <li>Esta versão do projeto pode ser acessada no linke <a href="https://recrutamento-manager-com-jwt.herokuapp.com/" target="blank">https://recrutamento-manager-com-jwt.herokuapp.com/</a>.
+         <li>Esta versão do projeto pode ser acessada no linke <a href="https://recrutamento-manager-com-jwt.herokuapp.com/" target="_blank">https://recrutamento-manager-com-jwt.herokuapp.com/</a>.
          </li>
          <li>Além disso, sua documentação pode ser encontrada em <a href="https://recrutamento-manager-com-jwt.herokuapp.com/swagger-ui.html" target="blank">Documentação com Swagger</a>. Na interface da documentação, também é possível testar os endpoints da aplicação.
          </li>
@@ -39,7 +39,7 @@
             Nessa versão do projeto o processo de autenticação de autorização foi desabilitado, de forma a facilitar o acesso do site criado.
          </li>
          <li>
-            O site que dá suporte a esta versão foi desenvolvido utilizando o Angular e pode ser acessado no link <a href="https://603edd851ecd1f0007a37a3d--optimistic-hermann-e8672e.netlify.app" target="_blank">Task Manager</a>.
+            O site que dá suporte a esta versão foi desenvolvido utilizando o Angular e pode ser acessado no link <a href="https://603edd851ecd1f0007a37a3d--optimistic-hermann-e8672e.netlify.app" target="new">Task Manager</a>.
          </li>
       </ul>
    </li>
