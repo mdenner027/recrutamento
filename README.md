@@ -45,6 +45,7 @@
    </li>
 </ul>
 <h2 id="testar">Como Testar o Projeto</h2>
+<p><strong>OBS.: o acesso às versões hospedadas no heroku pode demorar se a aplicação estiver "dormindo".</strong></p>
 <p>Para acessar a aplicação e testá-la, algumas formas são:</p>
 <ol>
    <li>
